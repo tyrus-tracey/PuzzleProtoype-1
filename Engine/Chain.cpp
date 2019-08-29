@@ -3,7 +3,9 @@
 #include <cstdlib>
 #include <time.h>
 
-Chain::Chain()
+Chain::Chain(Board& board)
+	:
+brd(board)
 {
 }
 
@@ -34,7 +36,8 @@ Chain::Block::Block(Board &board)
 		c = Colors::Red;
 		break;
 	}
-	loc = Location(board.getWidth() - board.scale, board.getScale());
+	int test = brd.getWidth();
+	loc = Location(brd.getWidth() - brd.scale, brd.getScale());
 	direction = Location(-1, 0);
 }
 

@@ -13,15 +13,16 @@ private:
 		void operator++();
 		Location operator*() const;
 	private:
-		Board &brd;
+		Board & brd;
 		Color c;
 		Location loc;
 		Location direction;
 	};
 public:
-	Chain();
+	Chain(Board &board);
 	~Chain();
 private:
 	Block chain[256];
+	Board &brd;
 };
 
