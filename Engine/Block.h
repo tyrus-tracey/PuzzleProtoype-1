@@ -10,6 +10,7 @@ public:
 	Color getColor() const;
 	void draw() const;
 	void operator++();
+	Location operator*() const;
 private:
 	Board &brd;
 	Color c;

@@ -1,5 +1,5 @@
 #include "Board.h"
-#include "Block.h"
+#include "Chain.h"
 #include <assert.h>
 
 //Set graphics object and board dimensions
@@ -11,21 +11,6 @@ Board::Board(Graphics & gfx)
 
 Board::~Board()
 {
-}
-
-void Board::initialize()
-{
-	drawMap();
-	Block test = Block(*this);
-	for (int i = 0; i < 14; i++) {
-		//13th occurance for first collision
-		//24th occurance for second collision
-		//when colliding downwards with wall block,
-		//getpixel does not probe a gray color in the next lower pixel (returns 0 as the dword)
-		//resulting in the block clipping into the wall block
-		test.operator++();
-	}
-	test.draw();
 }
 
 //Grab width

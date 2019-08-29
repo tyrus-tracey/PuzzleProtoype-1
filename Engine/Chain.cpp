@@ -1,10 +1,18 @@
-#include "Block.h"
+#include "Chain.h"
 #include "Board.h"
 #include <cstdlib>
 #include <time.h>
 
+Chain::Chain()
+{
+}
+
+Chain::~Chain()
+{
+}
+
 //Create a block of random color and set it behind the opening, and set it default facing left
-Block::Block(Board &board)
+Chain::Block::Block(Board &board)
 	:
 	brd(board)
 {
@@ -31,16 +39,16 @@ Block::Block(Board &board)
 }
 
 
-Block::~Block()
+Chain::Block::~Block()
 {
 }
 
-Color Block::getColor() const
+Color Chain::Block::getColor() const
 {
 	return c;
 }
 
-void Block::draw() const
+void Chain::Block::draw() const
 {
 	brd.drawCell(loc.X(), loc.Y(), c);
 	//brd.drawCell(loc, c);
@@ -49,15 +57,15 @@ void Block::draw() const
 //if the middle pixel of the next cell in the direction of this block is grey,
 //	turn block 90 degrees CCW
 //move this block by adding direction onto it
-void Block::operator++()
+void Chain::Block::operator++()
 {
 	const Color WALLCOLOR = Colors::Gray;
-	if ( (brd.getGfx().getPixel(operator*() + (direction * brd.scale)))  == WALLCOLOR ) {
+	if ((brd.getGfx().getPixel(operator*() + (direction * brd.scale))) == WALLCOLOR) {
 		if (direction.X() == 0) {
 			direction.setX(direction.Y());
 			direction.setY(0);
 		}
-		else if (direction.X() == -1){
+		else if (direction.X() == -1) {
 			direction.setX(0);
 			direction.setY(1);
 		}
@@ -73,7 +81,7 @@ void Block::operator++()
 }
 
 //Returns mid-point location of block, rather than the actual location (top-left corner)
-Location Block::operator*() const
+Location Chain::Block::operator*() const
 {
 	Location output(int(loc.X() + float((0.5 * brd.scale))), int(loc.Y() + float((0.5 * brd.scale))));
 	return output;

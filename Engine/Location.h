@@ -11,6 +11,8 @@ public:
 	void setY(const int newValue);
 	Location operator+(const Location &loc) const;
 	Location operator-(const Location &loc) const;
+	Location operator*(const int &factor) const;
+	Location operator*(const float &factor) const;
 private:
 	int xValue;
 	int yValue;

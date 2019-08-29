@@ -54,3 +54,15 @@ Location Location::operator-(const Location & loc) const
 	Location output(xValue - loc.X(), yValue - loc.Y());
 	return output;
 }
+
+Location Location::operator*(const int & factor) const
+{
+	Location output(X() * factor, Y() * factor);
+	return output;
+}
+
+Location Location::operator*(const float & factor) const
+{
+	Location output(int(X() * factor), int(Y() * factor));
+	return output;
+}

@@ -46,5 +46,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	player.getBoard()->initialize();
+	player.getBoard()->drawMap();
 }
