@@ -1,6 +1,7 @@
 #pragma once
 #include "Board.h"
 #include "Graphics.h"
+#include "Chain.h"
 
 class Player
 {
@@ -11,5 +12,6 @@ public:
 private:
 	Board board;
 	Graphics & gfx;
+	Chain * pChain;
 };
 

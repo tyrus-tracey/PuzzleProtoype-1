@@ -6,6 +6,7 @@ Player::Player(Graphics & gfx)
 	:
 board(gfx), gfx(gfx)
 {
+	pChain = new Chain(board);
 }
 
 
