@@ -14,7 +14,14 @@ Chain::~Chain()
 {
 }
 
-void Chain::drawBlock(Block & block)
+void Chain::drawChain()
+{
+	for (int i = 0; i < size; i++) {
+		drawBlock(blocks[i]);
+	}
+}
+
+void Chain::drawBlock(Block & block) const
 {
 	brd.drawCell(block.loc, block.c);
 }

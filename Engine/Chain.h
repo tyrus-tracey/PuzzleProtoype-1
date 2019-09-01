@@ -20,7 +20,8 @@ private:
 public:
 	Chain(Board &board);
 	~Chain();
-	void drawBlock(Block &block);
+	void drawChain();
+	void drawBlock(Block &block) const;
 	void moveBlock(Block &block);
 	Location getMidPoint(Block &block) const;
 private:
