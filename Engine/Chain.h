@@ -21,10 +21,11 @@ public:
 	Chain(Board &board);
 	~Chain();
 	void drawChain();
-	void drawBlock(Block &block) const;
-	void moveBlock(Block &block);
+	void moveChain();
 	Location getMidPoint(Block &block) const;
 private:
+	void drawBlock(Block &block) const;
+	void moveBlock(Block &block);
 	Board &brd;
 	Block blocks[100];
 	int size;

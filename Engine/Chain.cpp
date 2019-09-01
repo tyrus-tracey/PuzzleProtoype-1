@@ -21,6 +21,13 @@ void Chain::drawChain()
 	}
 }
 
+void Chain::moveChain()
+{
+	for (int i = 0; i < size; i++) {
+		moveBlock(blocks[i]);
+	}
+}
+
 void Chain::drawBlock(Block & block) const
 {
 	brd.drawCell(block.loc, block.c);
