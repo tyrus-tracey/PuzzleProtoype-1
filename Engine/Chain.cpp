@@ -6,6 +6,8 @@ Chain::Chain(Board& board)
 	:
 brd(board)
 {
+	blocks[0].initialize(brd);
+	size = 1;
 }
 
 Chain::~Chain()
@@ -22,6 +24,15 @@ Color Chain::Block::getColor() const
 	return c;
 }
 
+//High-level function to create a block
+void Chain::Block::initialize(Board &board)
+{
+	initializeColor();
+	initializeLocation(board);
+}
+
+//Set a random block color
+//TODO: Improve randomization distribution by using std::md19337 or whatever
 void Chain::Block::initializeColor()
 {
 	const int rng = rand() % 4;
@@ -44,6 +55,7 @@ void Chain::Block::initializeColor()
 	}
 }
 
+//Set block to start at the board's entry point
 void Chain::Block::initializeLocation(Board &board)
 {
 	loc = Location(board.getWidth() - board.scale, board.getScale());

@@ -13,6 +13,7 @@ private:
 		Color c;
 		Location loc;
 		Location direction;
+		void initialize(Board &board);
 		void initializeColor();
 		void initializeLocation(Board &board);
 	};
@@ -24,5 +25,7 @@ public:
 	Location getMidPoint(Block &block) const;
 private:
 	Board &brd;
+	Block blocks[100];
+	int size;
 };
 
