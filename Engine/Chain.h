@@ -7,21 +7,21 @@ private:
 	class Block
 	{
 	public:
-		Block(Board &board);
-		~Block();
 		Color getColor() const;
-		void draw() const;
-		void operator++();
-		Location operator*() const;
 	private:
-		Board & B_brd;
+		friend class Chain;
 		Color c;
 		Location loc;
 		Location direction;
+		void initializeColor();
+		void initializeLocation(Board &board);
 	};
 public:
 	Chain(Board &board);
 	~Chain();
+	void drawBlock(Block &block);
+	void moveBlock(Block &block);
+	Location getMidPoint(Block &block) const;
 private:
 	Board &brd;
 };
