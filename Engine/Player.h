@@ -8,6 +8,7 @@ class Player
 public:
 	Player(Graphics & gfx);
 	~Player();
+	Chain * getChain();
 	Board * getBoard();
 private:
 	Board board;

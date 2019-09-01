@@ -47,4 +47,6 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	player.getBoard()->drawMap();
+	player.getChain()->moveChain();
+	player.getChain()->drawChain();
 }

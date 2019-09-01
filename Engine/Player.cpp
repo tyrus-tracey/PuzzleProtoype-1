@@ -14,6 +14,11 @@ Player::~Player()
 {
 }
 
+Chain * Player::getChain()
+{
+	return pChain;
+}
+
 Board * Player::getBoard() 
 {
 	return &board;
