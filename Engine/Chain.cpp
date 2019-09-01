@@ -1,5 +1,4 @@
 #include "Chain.h"
-#include "Board.h"
 #include <cstdlib>
 #include <time.h>
 
@@ -16,7 +15,7 @@ Chain::~Chain()
 //Create a block of random color and set it behind the opening, and set it default facing left
 Chain::Block::Block(Board &board)
 	:
-	brd(board)
+	B_brd(board)
 {
 	const int rng = rand() % 4;
 	switch (rng) {
@@ -36,8 +35,8 @@ Chain::Block::Block(Board &board)
 		c = Colors::Red;
 		break;
 	}
-	int test = brd.getWidth();
-	loc = Location(brd.getWidth() - brd.scale, brd.getScale());
+	int test = B_brd.getWidth();
+	loc = Location(B_brd.getWidth() - B_brd.scale, B_brd.getScale());
 	direction = Location(-1, 0);
 }
 
@@ -53,7 +52,7 @@ Color Chain::Block::getColor() const
 
 void Chain::Block::draw() const
 {
-	brd.drawCell(loc.X(), loc.Y(), c);
+	B_brd.drawCell(loc.X(), loc.Y(), c);
 	//brd.drawCell(loc, c);
 }
 
@@ -63,7 +62,7 @@ void Chain::Block::draw() const
 void Chain::Block::operator++()
 {
 	const Color WALLCOLOR = Colors::Gray;
-	if ((brd.getGfx().getPixel(operator*() + (direction * brd.scale))) == WALLCOLOR) {
+	if ((B_brd.getGfx().getPixel(operator*() + (direction * B_brd.scale))) == WALLCOLOR) {
 		if (direction.X() == 0) {
 			direction.setX(direction.Y());
 			direction.setY(0);
@@ -78,14 +77,14 @@ void Chain::Block::operator++()
 		}
 	}
 	Location offset;
-	offset.setX(direction.X() * brd.scale);
-	offset.setY(direction.Y() * brd.scale);
+	offset.setX(direction.X() * B_brd.scale);
+	offset.setY(direction.Y() * B_brd.scale);
 	loc = loc + offset;
 }
 
 //Returns mid-point location of block, rather than the actual location (top-left corner)
 Location Chain::Block::operator*() const
 {
-	Location output(int(loc.X() + float((0.5 * brd.scale))), int(loc.Y() + float((0.5 * brd.scale))));
+	Location output(int(loc.X() + float((0.5 * B_brd.scale))), int(loc.Y() + float((0.5 * B_brd.scale))));
 	return output;
 }

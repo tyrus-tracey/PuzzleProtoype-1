@@ -1,4 +1,5 @@
 #pragma once
+#include "Board.h"
 
 class Chain
 {
@@ -13,7 +14,7 @@ private:
 		void operator++();
 		Location operator*() const;
 	private:
-		Board & brd;
+		Board & B_brd;
 		Color c;
 		Location loc;
 		Location direction;
@@ -22,7 +23,6 @@ public:
 	Chain(Board &board);
 	~Chain();
 private:
-	Block chain[256];
 	Board &brd;
 };
 

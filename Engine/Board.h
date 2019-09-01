@@ -26,6 +26,5 @@ private:
 	int height;
 	const int scale = 40;
 	Graphics & gfx;
-	Chain & chain = Chain(*this);
 };
 
