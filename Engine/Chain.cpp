@@ -72,7 +72,7 @@ void Chain::Block::initializeColor()
 //Set block to start at the board's entry point
 void Chain::Block::initializeLocation(Board &board)
 {
-	loc = Location(board.getWidth() - board.scale, board.getScale());
+	loc = Location(board.getWidth(), board.getScale());
 	direction = Location(-1, 0);
 }
 

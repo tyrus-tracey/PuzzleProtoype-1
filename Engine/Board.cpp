@@ -54,7 +54,7 @@ void Board::Clamp(int &x, int &y)
 //Draw a cell based on board's scale
 void Board::drawCell(Location &loc, Color c)
 {
-	gfx.DrawRect(loc.X(), loc.Y(), loc.X() * scale, loc.Y() * scale, c);
+	gfx.DrawRect(loc.X(), loc.Y(), loc.X() + scale, loc.Y() + scale, c);
 }
 
 void Board::drawCell(int x, int y, Color c)
