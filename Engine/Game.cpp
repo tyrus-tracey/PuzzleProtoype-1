@@ -42,11 +42,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	player.getChain()->moveChain();
+	
 }
-
+//BUG: 
+//moveChain() currently has to be in composeframe because collision-detection 
+//	is reliant on the map borders being generated.
+//	Collision should be refactored to not be reliant on graphics being rendered
+//	for performance and design reasons.
 void Game::ComposeFrame()
 {
 	player.getBoard()->drawMap();
+	player.getChain()->moveChain();
+	player.getChain()->growChain();
 	player.getChain()->drawChain();
 }

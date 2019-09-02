@@ -22,6 +22,7 @@ public:
 	~Chain();
 	void drawChain();
 	void moveChain();
+	void growChain();
 	Location getMidPoint(Block &block) const;
 private:
 	void drawBlock(Block &block) const;

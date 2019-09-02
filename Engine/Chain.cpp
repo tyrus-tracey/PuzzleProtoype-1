@@ -28,6 +28,15 @@ void Chain::moveChain()
 	}
 }
 
+void Chain::growChain()
+{
+	if (size >= 100) {
+		return;
+	}
+	blocks[size].initialize(brd);
+	size++;
+}
+
 void Chain::drawBlock(Block & block) const
 {
 	brd.drawCell(block.loc, block.c);
