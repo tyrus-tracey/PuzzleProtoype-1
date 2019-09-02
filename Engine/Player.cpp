@@ -12,6 +12,7 @@ board(gfx), gfx(gfx)
 
 Player::~Player()
 {
+	delete pChain;
 }
 
 Chain * Player::getChain()
