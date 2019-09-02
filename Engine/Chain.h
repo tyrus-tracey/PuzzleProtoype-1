@@ -10,12 +10,14 @@ private:
 		Color getColor() const;
 	private:
 		friend class Chain;
-		Color c;
-		Location loc;
-		Location direction;
 		void initialize(Board &board);
 		void initializeColor();
 		void initializeLocation(Board &board);
+		Color c;
+		Location loc;
+		Location direction;
+		Block * next = NULL;
+		Block * prev = NULL;
 	};
 public:
 	Chain(Board &board);
