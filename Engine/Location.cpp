@@ -66,3 +66,11 @@ Location Location::operator*(const float & factor) const
 	Location output(int(X() * factor), int(Y() * factor));
 	return output;
 }
+
+bool Location::operator==(const Location & loc) const
+{
+	if (xValue == loc.X() && yValue == loc.Y()) {
+		return true;
+	}
+	return false;
+}

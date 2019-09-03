@@ -42,7 +42,10 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	
+	if (player.getChain()->overThreshold()) {
+		player.getChain()->~Chain();
+		gameOver = true;
+	}
 }
 //BUG: 
 //moveChain() currently has to be in composeframe because collision-detection 
@@ -52,7 +55,9 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	player.getBoard()->drawMap();
-	player.getChain()->moveChain();
-	player.getChain()->growChain();
-	player.getChain()->drawChain();
+	if (!gameOver) {
+		player.getChain()->moveChain();
+		player.getChain()->growChain();
+		player.getChain()->drawChain();
+	}
 }

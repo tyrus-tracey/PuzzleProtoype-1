@@ -45,4 +45,5 @@ private:
 	/*  User Variables              */
 	/********************************/
 	Player player;
+	bool gameOver = false;
 };

@@ -13,6 +13,7 @@ public:
 	Location operator-(const Location &loc) const;
 	Location operator*(const int &factor) const;
 	Location operator*(const float &factor) const;
+	bool operator==(const Location &loc) const;
 private:
 	int xValue;
 	int yValue;

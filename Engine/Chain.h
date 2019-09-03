@@ -25,6 +25,8 @@ public:
 	void drawChain();
 	void moveChain();
 	void growChain();
+	void unlinkChain(Block * blockA, Block * blockB);
+	bool overThreshold() const;
 	Location getMidPoint(Block * block) const;
 private:
 	void drawBlock(Block *block) const;

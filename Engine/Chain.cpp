@@ -17,6 +17,7 @@ brd(board)
 
 Chain::~Chain()
 {
+	unlinkChain(HEAD, TAIL);
 	delete HEAD;
 	delete TAIL;
 }
@@ -47,6 +48,28 @@ void Chain::growChain()
 	newBlock->prev = TAIL;
 	TAIL = newBlock;
 	size++;
+}
+
+//Delete all blocks between A and B and attach A to B
+//B MUST be ahead of A.
+void Chain::unlinkChain(Block * blockA, Block * blockB)
+{
+	Block * blockptr = blockA->next;
+	while (blockptr != blockB) {
+		blockptr = blockptr->next;
+		delete blockptr->prev;
+	}
+	blockA->next = blockB;
+	blockB->prev = blockA;
+}
+
+bool Chain::overThreshold() const
+{
+	Location middleOfBoard(brd.getWidth() / 2, brd.getHeight() / 2);
+	if (getMidPoint(HEAD) == middleOfBoard) {
+		return true;
+	}
+	return false;
 }
 
 void Chain::drawBlock(Block * block) const
