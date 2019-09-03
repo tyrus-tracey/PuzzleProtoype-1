@@ -25,12 +25,14 @@ public:
 	void drawChain();
 	void moveChain();
 	void growChain();
-	Location getMidPoint(Block &block) const;
+	Location getMidPoint(Block * block) const;
 private:
-	void drawBlock(Block &block) const;
-	void moveBlock(Block &block);
+	void drawBlock(Block *block) const;
+	void moveBlock(Block *block);
 	Board &brd;
-	Block blocks[100];
+	Block * blocks;
+	Block * HEAD;
+	Block * TAIL;
 	int size;
 };
 

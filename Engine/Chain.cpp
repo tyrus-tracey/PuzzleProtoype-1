@@ -6,40 +6,52 @@ Chain::Chain(Board& board)
 	:
 brd(board)
 {
-	blocks[0].initialize(brd);
+	blocks = new Block;
+	blocks->initialize(brd);
+	if (size == 0) {
+		HEAD = blocks;
+		TAIL = blocks;
+	}
 	size = 1;
 }
 
 Chain::~Chain()
 {
+	delete HEAD;
+	delete TAIL;
 }
 
 void Chain::drawChain()
 {
+	Block * blockptr = HEAD;
 	for (int i = 0; i < size; i++) {
-		drawBlock(blocks[i]);
+		drawBlock(blockptr);
+		blockptr = blockptr->next;
 	}
 }
 
 void Chain::moveChain()
 {
+	Block * blockptr = HEAD;
 	for (int i = 0; i < size; i++) {
-		moveBlock(blocks[i]);
+		moveBlock(blockptr);
+		blockptr = blockptr->next;
 	}
 }
 
 void Chain::growChain()
 {
-	if (size >= 100) {
-		return;
-	}
-	blocks[size].initialize(brd);
+	Block * newBlock = new Block;
+	newBlock->initialize(brd);
+	TAIL->next = newBlock;
+	newBlock->prev = TAIL;
+	TAIL = newBlock;
 	size++;
 }
 
-void Chain::drawBlock(Block & block) const
+void Chain::drawBlock(Block * block) const
 {
-	brd.drawCell(block.loc, block.c);
+	brd.drawCell(block->loc, block->c);
 }
 
 Color Chain::Block::getColor() const
@@ -52,6 +64,7 @@ void Chain::Block::initialize(Board &board)
 {
 	initializeColor();
 	initializeLocation(board);
+	//TODO: set pointers
 }
 
 //Set a random block color
@@ -88,32 +101,32 @@ void Chain::Block::initializeLocation(Board &board)
 //if the middle pixel of the next cell in the direction of this block is grey,
 //	turn block 90 degrees CCW
 //move this block by adding direction onto it
-void Chain::moveBlock(Block &block)
+void Chain::moveBlock(Block * block)
 {
 	const Color WALLCOLOR = Colors::Gray;
-	if ((brd.getGfx().getPixel(getMidPoint(block) + (block.direction * brd.scale))) == WALLCOLOR) {
-		if (block.direction.X() == 0) {
-			block.direction.setX(block.direction.Y());
-			block.direction.setY(0);
+	if ((brd.getGfx().getPixel(getMidPoint(block) + (block->direction * brd.scale))) == WALLCOLOR) {
+		if (block->direction.X() == 0) {
+			block->direction.setX(block->direction.Y());
+			block->direction.setY(0);
 		}
-		else if (block.direction.X() == -1) {
-			block.direction.setX(0);
-			block.direction.setY(1);
+		else if (block->direction.X() == -1) {
+			block->direction.setX(0);
+			block->direction.setY(1);
 		}
 		else {
-			block.direction.setX(0);
-			block.direction.setY(-1);
+			block->direction.setX(0);
+			block->direction.setY(-1);
 		}
 	}
 	Location offset;
-	offset.setX(block.direction.X() * brd.scale);
-	offset.setY(block.direction.Y() * brd.scale);
-	block.loc = block.loc + offset;
+	offset.setX(block->direction.X() * brd.scale);
+	offset.setY(block->direction.Y() * brd.scale);
+	block->loc = block->loc + offset;
 }
 
 //Returns mid-point location of block, rather than the actual location (top-left corner)
-Location Chain::getMidPoint(Block &block) const
+Location Chain::getMidPoint(Block * block) const
 {
-	Location output(int(block.loc.X() + float((0.5 * brd.scale))), int(block.loc.Y() + float((0.5 * brd.scale))));
+	Location output(int(block->loc.X() + float((0.5 * brd.scale))), int(block->loc.Y() + float((0.5 * brd.scale))));
 	return output;
 }
